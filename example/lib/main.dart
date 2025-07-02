@@ -29,12 +29,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: DynamicLoginPage(
-        "App title", forgotPasswordFunction: () {  }, loginFunction: () {  }, registerFunction: () {  }, passwordVisibilityFunction: () {  },),
+        "assets/images/sample_logo.png",
+        "assets/images/google_sample.png",
+        "assets/images/facebook_sample.png",
+        forgotPasswordFunction: () {},
+        loginFunction: () {},
+        registerFunction: () {},
+        passwordVisibilityFunction: () {},
+        facebookFunction: () {},
+        googleFunction: () {},
+      ),
     );
   }
 }
