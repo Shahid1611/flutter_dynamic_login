@@ -1,6 +1,6 @@
 # flutter_dynamic_login
 
-A simple flutter dynamic login screen
+A simple yet customizable dynamic login screen for Flutter apps, featuring email and password input fields with validation. Designed with clean UI, rounded icon buttons, and responsive layout—perfect for fast prototyping or production-ready authentication flows.
 
 ## Usage
 
@@ -9,13 +9,22 @@ And add this import to your file.
 
 
 ## Image
-<img src="https://github.com/user-attachments/assets/f03e92aa-7667-4e48-acb9-ba6f223213a8" width="100" height="200" />
+<img src="https://github.com/user-attachments/assets/d01640e4-2854-4437-b983-94d84fa52710" width="100" height="200" />
 
 ### Example
 
 ```dart
 DynamicLoginPage(
-        "App title", forgotPasswordFunction: () {  }, loginFunction: () {  }, registerFunction: () {  }, passwordVisibilityFunction: () {  },)
+        "assets/images/sample_logo.png",
+        "assets/images/google_sample.png",
+        "assets/images/facebook_sample.png",
+        forgotPasswordFunction: () {},
+        loginFunction: () {},
+        registerFunction: () {},
+        passwordVisibilityFunction: () {},
+        facebookFunction: () {},
+        googleFunction: () {},
+      ),
 ```
 
 ### AwesomeDialog Class
@@ -23,6 +32,8 @@ DynamicLoginPage(
 | Dart attribute        | Datatype             | Description                                                                                                                                                   |             Default Value              |
 |:---------------------:|:--------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------:|
 | forgotPasswordFunction            | Function           | Create your own function for forgot password.                                                                                      |                  Null                  |
+| facebookFunction            | Function           | Create your own function for facebook functionality.                                                                                      |                  Null                  |
+| googleFunction            | Function           | Create your own function for google functionality.                                                                                      |                  Null                  |
 | loginFunction          | Function               | Create your own function for login.                                                                                                |                  Null                  |
 | registerFunction                 | Function               | Create your own function for registration                                                                          |   Null   |
 | passwordVisibilityFunction                 | Function               | Create your own function for password visibility.                                                                                                                                      |                  Null                  |
