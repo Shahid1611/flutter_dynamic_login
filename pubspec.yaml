@@ -1,6 +1,6 @@
 name: flutter_dynamic_login
-description: "A simple yet customizable dynamic login screen for Flutter apps, featuring email and password input fields with validation. Designed with clean UI, rounded icon buttons, and responsive layout—perfect for fast prototyping or production-ready authentication flows."
-version: 0.0.2
+description: "A simple yet customizable dynamic login screen for Flutter apps, featuring email and password input fields with validation."
+version: 0.0.3
 homepage: https://github.com/Shahid1611/flutter_dynamic_login
 
 environment:

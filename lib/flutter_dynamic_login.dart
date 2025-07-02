@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 /// A customizable login screen widget.
 class DynamicLoginPage extends StatefulWidget {
   const DynamicLoginPage(
-      String this.appLogo,
-      String this.googleLogo,
-      String this.facebookLogo, {
-        super.key,
-        this.isEmailValid = false,
-        this.isPasswordValid = false,
-        this.isPasswordVisible = false,
-        this.passwordMaxLength = 12,
-        this.emailController,
-        this.passwordController,
-        this.themeColor = Colors.deepPurple,
-        required this.forgotPasswordFunction,
-        required this.loginFunction,
-        required this.registerFunction,
-        required this.facebookFunction,
-        required this.googleFunction,
-        required this.passwordVisibilityFunction,
-      });
+    String this.appLogo,
+    String this.googleLogo,
+    String this.facebookLogo, {
+    super.key,
+    this.isEmailValid = false,
+    this.isPasswordValid = false,
+    this.isPasswordVisible = false,
+    this.passwordMaxLength = 12,
+    this.emailController,
+    this.passwordController,
+    this.themeColor = Colors.deepPurple,
+    required this.forgotPasswordFunction,
+    required this.loginFunction,
+    required this.registerFunction,
+    required this.facebookFunction,
+    required this.googleFunction,
+    required this.passwordVisibilityFunction,
+  });
 
   // App logo displayed
   final String? appLogo;
@@ -219,9 +219,7 @@ class _DynamicLoginPageState extends State<DynamicLoginPage> {
                                   100.0,
                                 ), // Rounded corners
                               ),
-                              child: Image.asset(
-                                widget.googleLogo!,
-                              ),
+                              child: Image.asset(widget.googleLogo!),
                             ),
                           ),
                         ),
@@ -238,9 +236,7 @@ class _DynamicLoginPageState extends State<DynamicLoginPage> {
                                   100.0,
                                 ), // Rounded corners
                               ),
-                              child: Image.asset(
-                                widget.facebookLogo!,
-                              ),
+                              child: Image.asset(widget.facebookLogo!),
                             ),
                           ),
                         ),

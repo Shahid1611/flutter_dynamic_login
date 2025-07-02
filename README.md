@@ -1,6 +1,6 @@
 # flutter_dynamic_login
 
-A simple yet customizable dynamic login screen for Flutter apps, featuring email and password input fields with validation. Designed with clean UI, rounded icon buttons, and responsive layout—perfect for fast prototyping or production-ready authentication flows.
+A simple yet customizable dynamic login screen for Flutter apps, featuring email and password input fields with validation.
 
 ## Usage
 
@@ -9,22 +9,22 @@ And add this import to your file.
 
 
 ## Image
-<img src="https://github.com/user-attachments/assets/d01640e4-2854-4437-b983-94d84fa52710" width="100" height="200" />
+<img src="https://github.com/user-attachments/assets/46aa0fc1-8611-47b1-85e4-3e3e3ddc1a8d" width="100" height="200"  alt=""/>
 
 ### Example
 
 ```dart
 DynamicLoginPage(
-        "assets/images/sample_logo.png",
-        "assets/images/google_sample.png",
-        "assets/images/facebook_sample.png",
-        forgotPasswordFunction: () {},
-        loginFunction: () {},
-        registerFunction: () {},
-        passwordVisibilityFunction: () {},
-        facebookFunction: () {},
-        googleFunction: () {},
-      ),
+"assets/images/sample_logo.png",
+"assets/images/google_sample.png",
+"assets/images/facebook_sample.png",
+forgotPasswordFunction: () {},
+loginFunction: () {},
+registerFunction: () {},
+passwordVisibilityFunction: () {},
+facebookFunction: () {},
+googleFunction: () {},
+),
 ```
 
 ### AwesomeDialog Class
