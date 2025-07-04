@@ -29,6 +29,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  final _emailFormKey = GlobalKey<FormState>();
+  final _passwordFormKey = GlobalKey<FormState>();
+  bool isPasswordVisible = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,12 +42,31 @@ class _HomePageState extends State<HomePage> {
         "assets/images/google_sample.png",
         "assets/images/facebook_sample.png",
         forgotPasswordFunction: () {},
-        loginFunction: () {},
+        loginFunction: () => _loginUser(),
         registerFunction: () {},
-        passwordVisibilityFunction: () {},
+        passwordVisibilityFunction: () => _makePasswordVisibility(),
         facebookFunction: () {},
         googleFunction: () {},
+        emailFormKey: _emailFormKey,
+        passwordFormKey: _passwordFormKey,
+        isPasswordObscure: isPasswordVisible,
       ),
     );
+  }
+
+  void _loginUser() {
+    if (_emailFormKey.currentState!.validate()) {
+      if (_passwordFormKey.currentState!.validate()) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Login Successful !!')));
+      }
+    }
+  }
+
+  void _makePasswordVisibility() {
+    setState(() {
+      isPasswordVisible = !isPasswordVisible;
+    });
   }
 }

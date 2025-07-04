@@ -1,52 +1,89 @@
 import 'package:flutter/material.dart';
 
-/// A customizable login screen widget.
+/// A customizable and reusable login screen widget that supports
+/// email/password login, social login, and various UI customization options.
 class DynamicLoginPage extends StatefulWidget {
   const DynamicLoginPage(
     String this.appLogo,
     String this.googleLogo,
     String this.facebookLogo, {
     super.key,
+
+    /// Email validation flag (used externally for logic, not UI)
     this.isEmailValid = false,
+
+    /// Password validation flag (used externally for logic, not UI)
     this.isPasswordValid = false,
-    this.isPasswordVisible = false,
+
+    /// Toggles password visibility (obscureText)
+    this.isPasswordObscure = true,
+
+    /// Controls the maximum allowed characters in the password
     this.passwordMaxLength = 12,
+
+    /// Text controller for email field
     this.emailController,
+
+    /// Text controller for password field
     this.passwordController,
+
+    /// Theme color used across the login UI (buttons, highlights, etc.)
     this.themeColor = Colors.deepPurple,
+
+    /// Callback when 'Forgot password?' is tapped
     required this.forgotPasswordFunction,
+
+    /// Callback when 'Login' button is tapped
     required this.loginFunction,
+
+    /// Callback when 'Register' is tapped
     required this.registerFunction,
+
+    /// Callback when Facebook login is selected
     required this.facebookFunction,
+
+    /// Callback when Google login is selected
     required this.googleFunction,
+
+    /// Callback to toggle password visibility
     required this.passwordVisibilityFunction,
+
+    /// Global key for email form validation
+    required this.emailFormKey,
+
+    /// Global key for password form validation
+    required this.passwordFormKey,
   });
 
-  // App logo displayed
+  // Required image asset paths for logos
   final String? appLogo;
   final String? googleLogo;
   final String? facebookLogo;
 
-  // Validation flags and visibility control
+  // Validation and visibility flags
   final bool? isEmailValid;
   final bool? isPasswordValid;
-  final bool? isPasswordVisible;
+  final bool? isPasswordObscure;
   final int? passwordMaxLength;
 
-  // Text controllers for form fields
+  // Text editing controllers
   final TextEditingController? emailController;
   final TextEditingController? passwordController;
 
-  // Customizable color theme
+  // Custom UI color
   final Color? themeColor;
 
-  // Functional callbacks
+  // User interaction callbacks
   final VoidCallback forgotPasswordFunction;
   final VoidCallback loginFunction;
   final VoidCallback registerFunction;
   final VoidCallback passwordVisibilityFunction;
   final VoidCallback facebookFunction;
   final VoidCallback googleFunction;
+
+  // Form keys for validation
+  final GlobalKey<FormState> emailFormKey;
+  final GlobalKey<FormState> passwordFormKey;
 
   @override
   State<DynamicLoginPage> createState() => _DynamicLoginPageState();
@@ -55,7 +92,7 @@ class DynamicLoginPage extends StatefulWidget {
 class _DynamicLoginPageState extends State<DynamicLoginPage> {
   @override
   Widget build(BuildContext context) {
-    // Get screen size for responsive design
+    // Get the screen dimensions for responsive design
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -66,6 +103,7 @@ class _DynamicLoginPageState extends State<DynamicLoginPage> {
         color: widget.themeColor,
         child: Center(
           child: Container(
+            // Container for login card
             color: Colors.white,
             height: screenHeight / 1.3,
             width: screenWidth / 1.1,
@@ -75,7 +113,7 @@ class _DynamicLoginPageState extends State<DynamicLoginPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // App logo
+                    /// --- Logo Section ---
                     Center(
                       child: SizedBox(
                         height: screenHeight * 0.11,
@@ -84,7 +122,8 @@ class _DynamicLoginPageState extends State<DynamicLoginPage> {
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.01),
-                    // Sign In section header
+
+                    /// --- Page Title ---
                     Center(
                       child: Text(
                         "Sign In",
@@ -92,60 +131,79 @@ class _DynamicLoginPageState extends State<DynamicLoginPage> {
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.01),
-                    // Email input field
+
+                    /// --- Email Field ---
                     Text("Email"),
                     SizedBox(height: screenHeight * 0.01),
-                    TextField(
-                      controller: widget.emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        suffixIconColor: widget.themeColor,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 5.0,
-                          horizontal: 10.0,
+                    Form(
+                      key: widget.emailFormKey,
+                      child: TextFormField(
+                        controller: widget.emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          suffixIconColor: widget.themeColor,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.0,
+                            horizontal: 10.0,
+                          ),
+                          hintText: "Enter email",
+                          suffixIcon: Icon(Icons.email),
+                          hintStyle: TextStyle(fontSize: 14.0),
+                          border: OutlineInputBorder(),
                         ),
-                        hintText: "Enter email",
-                        suffixIcon: Icon(Icons.email),
-                        hintStyle: TextStyle(fontSize: 14.0),
-                        border: OutlineInputBorder(),
-                        errorText: widget.isEmailValid!
-                            ? "Please enter valid email"
-                            : null,
+                        validator: (value) {
+                          // Validate email
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+                          if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                            return 'Please enter a valid email address';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.01),
-                    // Password input field
+
+                    /// --- Password Field ---
                     Text("Password"),
                     SizedBox(height: screenHeight * 0.01),
-                    TextField(
-                      maxLength: widget.passwordMaxLength,
-                      controller: widget.passwordController,
-                      obscureText: widget.isPasswordVisible!,
-                      decoration: InputDecoration(
-                        suffixIconColor: widget.themeColor,
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            widget.isPasswordVisible!
-                                ? Icons.visibility_off
-                                : Icons.visibility,
+                    Form(
+                      key: widget.passwordFormKey,
+                      child: TextFormField(
+                        maxLength: widget.passwordMaxLength,
+                        controller: widget.passwordController,
+                        obscureText: widget.isPasswordObscure!,
+                        decoration: InputDecoration(
+                          suffixIconColor: widget.themeColor,
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              widget.isPasswordObscure!
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                            ),
+                            onPressed: widget.passwordVisibilityFunction,
                           ),
-                          onPressed:
-                              () {}, // Replace with widget.passwordVisibilityFunction
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.0,
+                            horizontal: 10.0,
+                          ),
+                          hintText: "Enter password",
+                          hintStyle: TextStyle(fontSize: 14.0),
+                          border: OutlineInputBorder(),
                         ),
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 5.0,
-                          horizontal: 10.0,
-                        ),
-                        hintText: "Enter password",
-                        hintStyle: TextStyle(fontSize: 14.0),
-                        border: OutlineInputBorder(),
-                        errorText: widget.isPasswordValid!
-                            ? "Please enter valid password"
-                            : null,
+                        validator: (value) {
+                          // Validate password
+                          if (value == null || value.isEmpty) {
+                            return 'This field is required';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.01),
-                    // Forgot password link
+
+                    /// --- Forgot Password ---
                     Align(
                       alignment: Alignment.centerRight,
                       child: InkWell(
@@ -157,7 +215,8 @@ class _DynamicLoginPageState extends State<DynamicLoginPage> {
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.01),
-                    // Login button
+
+                    /// --- Login Button ---
                     SizedBox(
                       width: screenWidth,
                       child: OutlinedButton(
@@ -184,7 +243,8 @@ class _DynamicLoginPageState extends State<DynamicLoginPage> {
                       ),
                     ),
                     SizedBox(height: screenHeight * 0.01),
-                    // Divider with "OR"
+
+                    /// --- Divider with OR ---
                     Row(
                       children: <Widget>[
                         Expanded(
@@ -203,38 +263,38 @@ class _DynamicLoginPageState extends State<DynamicLoginPage> {
                       ],
                     ),
                     SizedBox(height: screenHeight * 0.02),
-                    // Social logins
+
+                    /// --- Social Login Buttons ---
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        /// --- Google login button ---
                         SizedBox(
                           height: 50.0,
                           width: 50.0,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: widget.googleFunction,
                             child: Card(
                               color: Colors.white,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  100.0,
-                                ), // Rounded corners
+                                borderRadius: BorderRadius.circular(100.0),
                               ),
                               child: Image.asset(widget.googleLogo!),
                             ),
                           ),
                         ),
                         SizedBox(width: screenWidth * 0.02),
+
+                        /// --- Facebook login button ---
                         SizedBox(
                           height: 50.0,
                           width: 50.0,
                           child: InkWell(
-                            onTap: () {},
+                            onTap: widget.facebookFunction,
                             child: Card(
                               color: Colors.white,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  100.0,
-                                ), // Rounded corners
+                                borderRadius: BorderRadius.circular(100.0),
                               ),
                               child: Image.asset(widget.facebookLogo!),
                             ),
@@ -243,7 +303,8 @@ class _DynamicLoginPageState extends State<DynamicLoginPage> {
                       ],
                     ),
                     SizedBox(height: screenHeight * 0.03),
-                    // Registration link for new users
+
+                    /// --- Register Navigation ---
                     Align(
                       alignment: Alignment.center,
                       child: InkWell(

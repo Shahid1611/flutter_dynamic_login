@@ -7,3 +7,7 @@
 
 ## 0.0.3
 - dart format fix.
+
+## 0.0.4
+- Validations added.
+- bug fixes.
