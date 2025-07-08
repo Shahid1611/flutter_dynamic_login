@@ -11,3 +11,10 @@
 ## 0.0.4
 - Validations added.
 - bug fixes.
+
+## 0.0.5
+- Added: Apple login support
+- Updated: Visibility flags for login icons & forgot password
+- Renamed: `googleFunction` → `googleLoginFunction`, `facebookFunction` → `facebookLoginFunction`
+- Changed: Removed `required` keyword for dynamic login options
+- Added: OTP login feature
