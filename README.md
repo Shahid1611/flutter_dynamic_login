@@ -21,7 +21,7 @@ import 'package:flutter_dynamic_login/flutter_dynamic_login.dart';
 
 ## Login screen with demo snap
 
-<img height="500" width="250" src="https://github.com/Shahid1611/flutter_dynamic_login/blob/main/example/assets/display/screen_record.gif?raw=true">
+<img height="500" width="250" src="https://github.com/Shahid1611/flutter_dynamic_login/blob/main/example/assets/display/screen_record.gif?raw=true" alt="">
 
 ### Example
 
@@ -37,7 +37,7 @@ DynamicLoginPage(
       ),
     );
 ```
-## 🆕 What's New in v0.0.5
+## 🆕 What's New
 
 ✨ Added Apple Login Support: Introduced Apple icon and functionality property for seamless integration on iOS platforms.
 
@@ -80,9 +80,9 @@ DynamicLoginPage(
 ```
 ## Updated UI with Apple & OTP Support
 
-<img height="500" width="250" src="https://github.com/Shahid1611/flutter_dynamic_login/blob/main/example/assets/display/icons_visibility.png?raw=true">
+<img height="500" width="250" src="https://github.com/Shahid1611/flutter_dynamic_login/blob/main/example/assets/display/icons_visibility.png?raw=true" alt="">
 
-### AwesomeDialog Class
+### Awesome Login Properties
 
 | Dart attribute        | Datatype             | Description                                                                                                                                                   |             Default Value              |
 |:---------------------:|:--------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------:|

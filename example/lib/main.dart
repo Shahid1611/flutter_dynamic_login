@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
         "assets/images/sample_logo.png",
         "assets/images/google_sample.png",
         "assets/images/facebook_sample.png",
+        "assets/images/apple_logo.png",
         forgotPasswordFunction: () {},
         loginFunction: () => _loginUser(),
         registerFunction: () {},

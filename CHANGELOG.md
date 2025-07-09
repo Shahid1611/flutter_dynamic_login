@@ -18,3 +18,6 @@
 - Renamed: `googleFunction` → `googleLoginFunction`, `facebookFunction` → `facebookLoginFunction`
 - Changed: Removed `required` keyword for dynamic login options
 - Added: OTP login feature
+
+## 0.0.6
+- UI fixes for different screens adaptability.
