@@ -11,7 +11,7 @@ Easily implement a dynamic login screen with customizable email and password fie
 Add the following line to your pubspec.yaml under dependencies:
 
 dependencies:
-flutter_dynamic_login: ^0.0.5
+flutter_dynamic_login: ^0.0.6
 
 ## Import the package
 
